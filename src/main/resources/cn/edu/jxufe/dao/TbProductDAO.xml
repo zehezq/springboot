@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.jxufe.dao.TbProductDAO">
+  <resultMap id="BaseResultMap" type="cn.edu.jxufe.entity.TbProduct">
+    <id column="goodID" jdbcType="INTEGER" property="goodid" />
+    <result column="code" jdbcType="INTEGER" property="code" />
+    <result column="userID" jdbcType="INTEGER" property="userid" />
+    <result column="caption" jdbcType="VARCHAR" property="caption" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="stock" jdbcType="VARCHAR" property="stock" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    goodID, code, userID, caption, price, stock, `count`, `status`, addtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_product
+    where goodID = #{goodid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_product
+    where goodID = #{goodid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.jxufe.entity.TbProduct">
+    insert into tb_product (goodID, code, userID, 
+      caption, price, stock, 
+      `count`, `status`, addtime
+      )
+    values (#{goodid,jdbcType=INTEGER}, #{code,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{caption,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, #{stock,jdbcType=VARCHAR}, 
+      #{count,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{addtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.jxufe.entity.TbProduct">
+    insert into tb_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodid != null">
+        goodID,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="userid != null">
+        userID,
+      </if>
+      <if test="caption != null">
+        caption,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="stock != null">
+        stock,
+      </if>
+      <if test="count != null">
+        `count`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodid != null">
+        #{goodid,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="caption != null">
+        #{caption,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null">
+        #{stock,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.jxufe.entity.TbProduct">
+    update tb_product
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        userID = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="caption != null">
+        caption = #{caption,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null">
+        stock = #{stock,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        `count` = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where goodID = #{goodid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.jxufe.entity.TbProduct">
+    update tb_product
+    set code = #{code,jdbcType=INTEGER},
+      userID = #{userid,jdbcType=INTEGER},
+      caption = #{caption,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      stock = #{stock,jdbcType=VARCHAR},
+      `count` = #{count,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=TIMESTAMP}
+    where goodID = #{goodid,jdbcType=INTEGER}
+  </update>
+</mapper>
